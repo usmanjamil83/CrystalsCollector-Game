@@ -1,0 +1,18 @@
+header h1 {
+	margin-top: -8px;
+	background-color: orange;
+	text-align: center;
+}
+#text {
+	background-color: pink;
+}
+#random {
+	background-color: green;
+}
+#win {
+	background-color: lightgray;
+}
+img {
+	width: 100px;
+	height: 100px;
+}
