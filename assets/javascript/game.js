@@ -3,8 +3,6 @@ var losses = 0;
 var counter = 0;
 
 var targetNumber = Math.floor(Math.random() * 101) + 19;
-console.log(targetNumber);
-
 $("#random-number").text(targetNumber);
 
 var crystalOne = Math.floor(Math.random() * 12) + 1;
@@ -22,10 +20,9 @@ console.log(crystalFour);
 $("#wins").html(wins);
 $("#losses").text(losses);
 
-function reset() {
+function reset()
+{
 	targetNumber = Math.floor(Math.random() * 101) + 19;
-	console.log(targetNumber);
-
 	$("#random-number").text(targetNumber);
 
 	crystalOne = Math.floor(Math.random() * 12) + 1;
@@ -44,64 +41,36 @@ function reset() {
 
 	$("#finalscore").text(counter);
 }
-function updateWins() {
-	wins++;
-	$("#wins").text(wins);
-	reset();
-}
-function updateLosses() {
-	losses++;
-	$("#losses").text(losses);
-	reset();
-}
-
+function alertResult()
 {
-	$(".crystal-image1").on("click", function() {
-		counter += crystalOne;
-		$("#finalscore").text(counter);
-		if (counter === targetNumber) {
-			alert("You win!");
-			updateWins();
-		}
-		else if (counter > targetNumber) {
-			alert("you lost");
-			updateLosses();
-		}				
-	});
-	$(".crystal-image2").on("click", function() {
-		counter += crystalTwo;
-		$("#finalscore").text(counter);
-		if (counter === targetNumber) {
-			alert("You win!");
-			updateWins();
-		}
-		else if (counter > targetNumber) {
-			alert("you lost");
-			updateLosses();
-		}				
-	});
-	$(".crystal-image3").on("click", function() {
-		counter += crystalThree;
-		$("#finalscore").text(counter);
-		if (counter === targetNumber) {
-			alert("You win!");
-			updateWins();
-		}
-		else if (counter > targetNumber) {
-			alert("you lost");
-			updateLosses();
-		}				
-	});
-	$(".crystal-image4").on("click", function() {
-		counter += crystalFour;
-		$("#finalscore").text(counter);
-		if (counter === targetNumber) {
-			alert("You win!");
-			updateWins();
-		}
-		else if (counter > targetNumber) {
-			alert("you lost");
-			updateLosses();
-		}				
-	});
+	if (counter == targetNumber)
+	{
+		wins++;
+		$("#wins").text(wins);
+		$("#yay").html("you win");
+		reset();
+	}
+	else if (counter > targetNumber)
+	{
+		losses++;
+		$("#losses").text(losses);
+		$("#yay").html("you lose");
+		reset();
+	}
 }
+$(".crystal-image1").on("click", function() {
+	$("#finalscore").text(counter += crystalOne);
+	alertResult();
+});
+$(".crystal-image2").on("click", function() {
+	$("#finalscore").text(counter += crystalTwo);
+	alertResult();
+});
+$(".crystal-image3").on("click", function() {
+	$("#finalscore").text(counter += crystalThree);
+	alertResult();
+});
+$(".crystal-image4").on("click", function() {
+	$("#finalscore").text(counter += crystalFour);
+	alertResult();
+});
